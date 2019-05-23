@@ -33,7 +33,8 @@ app.get('/', function(req,res) {
 })
 
 app.get('/stay', function(req,res) {
-    res.render('stay.ejs')
+    let x = req.session
+    res.render('stay.ejs', {x})
 })
 
 app.get('/payment', (req,res) => {
