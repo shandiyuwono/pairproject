@@ -11,5 +11,12 @@ router.get('/single', BookingController.single)
 
 router.get('/single/reserve', BookingController.singleReserve)
 
+router.post('/single/reserve', BookingController.singleBreakfast)
+
+router.get('/single/breakfast/delete', BookingController.singleBreakfastDelete)
+
+router.get('/booking/single/reserve/:id', function(req,res) {
+    console.log(req.params)
+})
 
 module.exports = router

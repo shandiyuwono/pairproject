@@ -9,7 +9,7 @@ class BookingController {
         req.session.arrival_time = at
         req.session.checkout_time = ct
         req.session.guests = Number(req.body.guests) 
-        console.log(req.session)
+ 
         let availableRooms;
         Room.findAll({
             include: Booking,
@@ -39,9 +39,11 @@ class BookingController {
                 return Promise.all(roomtypes)
             })
             .then(roomtypes => {
+                // res.send(req.body)
                  res.render('available.ejs', {
                     availableRooms: availableRooms,
-                    roomTypes: roomtypes
+                    roomTypes: roomtypes,
+                    guests: req.body.guests
                 })
                 // res.send(availableRooms)
             })
@@ -57,8 +59,38 @@ class BookingController {
     }
 
     static singleReserve(req,res) {
-        res.render('booksingle.ejs', {
-            reqsession : req.session
+        RoomType.findByPk(1)
+            .then(room => {
+                res.render('booksingle.ejs', {
+                    reqsession : req.session,
+                    roomData: room,
+                    amount: null
+                })
+            })
+    }
+
+    static singleBreakfast(req,res) {
+
+        // console.log(req.body.amount)
+         RoomType.findByPk(1)
+            .then(room => {
+                res.render('booksingle.ejs', {
+                    reqsession: req.session,
+                    roomData: room,
+                    amount: req.body.amount
+                })
+            })
+        
+    }
+
+    static singleBreakfastDelete(req,res) {
+        RoomType.findByPk(1)
+        .then(room => {
+            res.render('booksingle.ejs', {
+                reqsession: req.session,
+                roomData: room,
+                amount: null
+            })
         })
     }
 }
