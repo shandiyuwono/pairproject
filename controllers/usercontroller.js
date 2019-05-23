@@ -19,20 +19,27 @@ class UserController {
            }
        })
         .then(user => {
-            let valid = bcrypt.compareSync(req.body.password, user.password)
-            if(valid){
-                req.session.user = {
-                    id: user.id,
-                    username: user.username,
-                }
-                console.log(req.session);
-                
-                res.redirect('/stay')
-            }
-            else{
+            if(!user) {
                 res.render('login.ejs', {
-                    error: 'password wrong'
+                    error: 'username does not exist'
                 })
+            }
+            else {
+                let valid = bcrypt.compareSync(req.body.password, user.password)
+                if(valid){
+                    req.session.user = {
+                        id: user.id,
+                        username: user.username,
+                    }
+                    console.log(req.session);
+                    
+                    res.redirect('/stay')
+                }
+                else{
+                    res.render('login.ejs', {
+                        error: 'password wrong'
+                    })
+                }
             }
         })
         .catch(err => {
