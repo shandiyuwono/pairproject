@@ -51,7 +51,6 @@
         </div>
 
         <div id = "summary">
-           
                 <% let total = roomData.price %>
                 <% let nights = dayCalculation(reqsession.arrival_time, reqsession.checkout_time) %>
                 <h2>Your Stay</h2>
@@ -70,7 +69,7 @@
                 <p><%= priceCalculation(total, nights) %> IDR</p>
 
 
-                <form action = '/booking/<%= roomData.id %>' method = "POST">
+                <form action = '/booking/<%= roomData.id %>/payment' method = "POST">
                     <button type = 'submit'>Book Now</button>
                 </form>
         </div>
