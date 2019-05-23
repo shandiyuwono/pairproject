@@ -14,18 +14,19 @@
             <div><h3 class="col-header"> <a href='/user/register' id="nav"> register </a></h3></div>
             <div><h3 class="col-header"> <a href="/user/login" id="nav"> login </a></h3>
               <div style="text-align: center; padding-top: 100px; font-size: 24px">
+                  <% let date = new Date().toISOString().substr(0,10) %>
                   <form action = "/booking/available" method = "POST">
-                    <label>CHECK IN:</label>
-                    <input type = "date" name = "arrival_time">
-                    <label>CHECK OUT:</label>
-                    <input type = "date" name = "checkout_time">
-                    <label>Guests:</label>
-                    <select name = "guests">
-                        <% for(let i = 1; i <= 4; i++) { %>
-                            <option><%= i %></option>
-                        <% } %>
-                    </select>
-                    <button type = "submit">Check Availability</button>
+                      <label>CHECK IN</label>
+                      <input type = "date" name = "arrival_time" min = "<%= date %>" value = "<%= date %>">
+                      <label>CHECK OUT</label>
+                      <input type = "date" name = "checkout_time" min = "<%= date %>" value = "<%= date %>">
+                      <label>Guests</label>
+                      <select name = "guests">
+                          <% for(let i = 1; i <= 4; i++) { %>
+                              <option><%= i %></option>
+                          <% } %>
+                      </select>
+                      <button type = "submit">Check Availability</button>
                   </form>
               </div>
             </div>
