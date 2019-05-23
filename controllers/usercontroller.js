@@ -25,7 +25,9 @@ class UserController {
                     id: user.id,
                     username: user.username,
                 }
-                res.redirect('/ ')
+                console.log(req.session);
+                
+                res.redirect('/')
             }
             else{
                 res.render('login.ejs', {
