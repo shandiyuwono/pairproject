@@ -17,6 +17,11 @@
             text-align: center;
             color: red; 
         }
+
+        #paymentlogin {
+            text-align: center;
+            color: red; 
+        }
     </style>
     <body>
         
@@ -26,7 +31,7 @@
             <% let path = "/user/login" %>
             <% if(booking){ %>
                 <% path = `/booking/${id}/payment/login` %>
-                <h2>Please login before continuing your payment.</h2>
+                <h2 id = "paymentlogin">Please login before continuing your payment.</h2>
             <% } %> 
             <% if (error) { %>  
                 <h2 id = "error"><%= error %></h2>

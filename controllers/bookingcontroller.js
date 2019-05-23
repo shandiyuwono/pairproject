@@ -49,9 +49,12 @@ class BookingController {
             order: [['id']]
         })
             .then(rooms => {
-                // res.send(rooms)
-                if(ct < at) {
-                    throw `Check-out date should be after check-in date`
+                let x = req.session
+                if(ct <= at) {
+                    res.render('stay.ejs', {
+                        error: `Check-out date should be after check-in date`,
+                        x
+                    })
                 }
                 let availables = rooms
                     .filter(room => {
