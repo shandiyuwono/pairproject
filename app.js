@@ -36,7 +36,3 @@ app.get('/stay', function(req,res) {
     let x = req.session
     res.render('stay.ejs', {x})
 })
-
-app.get('/payment', (req,res) => {
-    res.render('payment.ejs')
-})

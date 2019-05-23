@@ -12,7 +12,15 @@
     <header>
     <div class="header">
         <div class="row-header">
+            <div><h3 class="col-header"> <a href="/user/login" id="nav"> login </a></h3></div>
+            <!-- <% if (!x) { %> -->
+            <!-- <% } %> -->
+
+            <!-- <% if (x) { %>
+                <div><h3 class="col-header"> <a href="/user/logout" id="nav"> logout </a></h3></div>
+            <% } %> -->
             
+
             <% if (!x.user) { %>
                 <div><h3 class="col-header"> <a href='/user/register' id="nav"> register </a></h3></div>
                 <div><h3 class="col-header"> <a href="\" id="nav"> home </a></h3></div>
@@ -26,7 +34,6 @@
                 <div><h3 class="col-header"> <a href="stay" id="nav"> stay </a> </h3></div>
                 <div><h3 class="col-header"> <a href="/user/logout" id="nav"> logout </a></h3></div>
             <% } %>
-
         </div>   
     </div>
 </header>

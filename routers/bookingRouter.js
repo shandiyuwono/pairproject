@@ -14,7 +14,7 @@ router.post('/single/reserve', BookingController.singleBreakfast)
 
 router.get('/single/breakfast/delete', BookingController.singleBreakfastDelete)
 
-router.post('/:id', (req,res,next) => {
+router.post('/:id/payment', (req,res,next) => {
     if(req.session.user) {
         next()
     }
@@ -22,7 +22,9 @@ router.post('/:id', (req,res,next) => {
         res.redirect('/user/login')
     }
 }, (req,res) => {
-    // res.render('')
+    res.render('payment.ejs', {
+        RoomTypeId : req.params.id
+    })
 })
 // router.get('/booking/single/reserve/:id', function(req,res) {
 //     console.log(req.params)
@@ -56,5 +58,10 @@ router.get('/quad/reserve', BookingController.quadReserve)
 router.post('/quad/reserve', BookingController.quadBreakfast)
 
 router.get('/quad/breakfast/delete', BookingController.quadBreakfastDelete)
+
+//payment
+
+router.post('/:id/success', BookingController.bookingSuccess)
+
 
 module.exports = router

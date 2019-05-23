@@ -18,9 +18,6 @@ class BookingController {
         })
             .then(rooms => {
                 // res.send(rooms)
-                if(at - new Date() < 0) {
-                    throw `Date input must be today or after ${new Date().toISOString().slice(0, 10)}`
-                }
                 if(ct < at) {
                     throw `Check-out date should be after check-in date`
                 }
@@ -60,6 +57,21 @@ class BookingController {
             })
     }
 
+    static bookingSuccess(req,res) {
+        // console.log(req.params, req.session)
+        let at = new Date(req.session.arrival_time).toISOString().substr(0,10)
+        let ct = new Date(req.session.arrival_time).toISOString().substr(0,10)
+        Booking.create({
+            arrival_time: at,
+            checkout_time: ct,
+            RoomId: req.params.id,
+            UserId: req.session.user.id
+        }) 
+            .then(() => {
+                res.render('success.ejs')
+            })
+
+    }
     //single
     static single(req,res){
         RoomType.findByPk(1)
