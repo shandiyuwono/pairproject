@@ -41,8 +41,8 @@ class UserController {
     }
 
     static logout(req, res) {
-        if (req.session) {
-            req.session.destroy(function(err) {
+        if (req.session.user) {
+            req.session.user.destroy(function(err) {
               if(err) {
                 return next(err);
               } else {
