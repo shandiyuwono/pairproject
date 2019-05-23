@@ -9,15 +9,15 @@
         <link rel="stylesheet" href="/css/style.css" type="text/css">
     </head>
     <body>
-        <h1>Home Page</h1>
         <a href = '/user/register'>Register</a>
         <a href = '/user/login'>Log In</a>
 
+        <% let date = new Date().toISOString().substr(0,10) %>
         <form action = "/booking/available" method = "POST">
             <label>CHECK IN</label>
-            <input type = "date" name = "arrival_time">
+            <input type = "date" name = "arrival_time" min = "<%= date %>" value = "<%= date %>">
             <label>CHECK OUT</label>
-            <input type = "date" name = "checkout_time">
+            <input type = "date" name = "checkout_time" min = "<%= date %>" value = "<%= date %>">
             <label>Guests</label>
             <select name = "guests">
                 <% for(let i = 1; i <= 4; i++) { %>

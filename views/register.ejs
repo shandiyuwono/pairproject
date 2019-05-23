@@ -17,6 +17,9 @@
         <div class="pt40">
             <h1 style="text-align: center">Register User</h1>
             <br><br>
+            <% if(error){ %>
+            <h3><%= error %></h3>
+            <% } %>
             <form action = "/user/register" method = "POST">
                 <div class="container form-padding" style="width: 500px">
                     <div class="form-group">
