@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     room_status: DataTypes.BOOLEAN
   }, {});
   Room.associate = function(models) {
-    // associations can be defined here
+    Room.hasMany(models.RoomType)
+    Room.hasMany(models.Booking)
   };
   return Room;
 };

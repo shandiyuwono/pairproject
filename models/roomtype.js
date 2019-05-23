@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER
   }, {});
   RoomType.associate = function(models) {
-    // associations can be defined here
+    RoomType.belongsTo(models.Room)
   };
   return RoomType;
 };

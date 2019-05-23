@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     RoomId: DataTypes.INTEGER
   }, {});
   Booking.associate = function(models) {
-    // associations can be defined here
+    Booking.belongsTo(models.User)
+    Booking.belongsTo(models.Room)
   };
   return Booking;
 };
