@@ -6,7 +6,8 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
     </head>
     <style>
     h1 {
@@ -22,16 +23,19 @@
     </style>
     <body>
 
-        <h1>Single</h1>
 
-        <div id = "description">
-            <p>Price: <%= room.price %></p>
-            <p>Size: <%= `${room.size} m²` %></p>
-            <h2>AMENITIES</h2>
-            <p>The comfortable <%= room.size %> m² room comes with complimentary WiFi internet, Connectivity Panel, Espresso machine and 40" LCD TV. Enjoy your morning cup of coffee or Dilmah Tea with a view of Jakarta's skyline.</p>
-
-            <a href = "/booking/single/reserve">Book Now</a>
-        </div>
       
+        <div class="card" style="padding-top: 80px; text-align: center">
+                <h1 class="card-header" style="padding-bottom: 50px; ">Single</h1>
+                <div class="card-body">
+                <h5 class="card-title"><p>Price: IDR.<%= room.price %></p></h5>
+                <br>
+                <h7 class="card-title"><p>Size: <%= `${room.size} m²` %></p></p></h7>
+                  <h9 class="card-text">The comfortable <%= room.size %> m² room comes with complimentary WiFi internet, Connectivity Panel, Espresso machine and 40" LCD TV. Enjoy your morning cup of coffee or Dilmah Tea with a view of Jakarta's skyline.</h9>
+                  <br><br>
+                  <a href = "/booking/single/reserve" class="btn btn-primary" >Book Now</a>
+                </div>
+            </div>
+
     </body>
 </html>

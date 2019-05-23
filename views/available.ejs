@@ -6,7 +6,8 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/stay.css" type="text/css">
     </head>
     <style>
     #room {
@@ -26,10 +27,11 @@
     </style>
     <body>
 
-        <h1>Available Rooms</h1>
+        <h1 style="padding-top: 20px; padding-bottom: 25px">Available Rooms</h1>
 
-        <div id = "rooms">
+        <div style="padding-left: 575px">
 
+          
                 <% if(guests <= 1) { %>
                     <div id = "single">
                             <% let count = 0 %>
@@ -38,55 +40,78 @@
                                 count++
                             } %>
                             <% } %>
-                            <h2>Room Type: Single</h2>
-                            <p>Available Rooms: <%= count %> </p>
-                            <a href = "/booking/single">See Details & Book</a>
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://a36c2e13a78ae1256a2f-1dc878dead8ec78a84e429cdf4c9df00.ssl.cf1.rackcdn.com/responsive/980/a36c2e13a78ae1256a2f-1dc878dead8ec78a84e429cdf4c9df00.ssl.cf1.rackcdn.com/u/park-hotel-hong-kong/room/Superior-Single-Room_mid.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h5 class="card-title" style="text-align: center">Single</h5>
+                                  <p class="card-text">The comfortable 22 m² room comes with complimentary WiFi internet, Connectivity Panel,...</p>
+                                  <h6 class="card-subtitle mb-2 text-muted" style="text-align: right">Available Rooms: <%= count %></h6>
+                                  <a href = "/booking/single" class="card-link">See Full Details & Book</a>
+                                </div>
+                              </div>
                     </div>
                 <% } %>
-                
+                <br>
                 <% if(guests <= 2) { %>
-                <div id = "Double">
-                        <% let count2 = 0 %>
-                        <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
-                        <% if(availableRooms[i].RoomTypeId === 2) {
-                            count2++
-                        } %>
-                        <% } %>
-                        <h2>Room Type: Double</h2>
-                        <p>Available Rooms: <%= count2 %> </p>
-                        <a href = "/booking/double">See Details & Book</a>
-                </div>
-                <% } %>
-                
-                <% if(guests <= 3) { %>
-                <div id = "triple">
-                    <% let count3 = 0 %>
-                        <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
-                            <% if(availableRooms[i].RoomTypeId === 3) {
-                                count3++
+                    <div id = "Double">
+                            <% let count2 = 0 %>
+                            <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
+                            <% if(availableRooms[i].RoomTypeId === 2) {
+                                count2++
                             } %>
                             <% } %>
-                            <h2>Room Type: Triple</h2>
-                            <p>Available Rooms: <%= count3 %> </p>
-                            <a href = "/booking/triple">See Details & Book</a>
-                        </div>
-                <% } %>
-
-                <% if(guests <= 4) { %>
-                <div id = "quad">
-                    <% let count4 = 0 %>
-                    <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
-                        <% if(availableRooms[i].RoomTypeId === 4) {
-                            count4++
-                        } %>
-                        <% } %>
-                        <h2>Room Type: Quad</h2>
-                        <p>Available Rooms:<%= count4 %> </p>
-                        <a href = "booking/quad">See Details & Book</a>
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://images.mirai.com/INFOROOMS/100122961/Mx3Xn1oJdMGV9uqPKtfJ/Mx3Xn1oJdMGV9uqPKtfJ_large.jpg" class="card-img-top" alt="...">        
+                                <div class="card-body">
+                                  <h5 class="card-title" style="text-align: center">Double</h5>
+                                  <p class="card-text">The comfortable 22 m² room comes with complimentary WiFi internet, Connectivity Panel,...</p>
+                                  <h6 class="card-subtitle mb-2 text-muted" style="text-align: right">Available Rooms: <%= count2 %></h6>
+                                  <a href = "/booking/double" class="card-link">See Full Details & Book</a>
+                                </div>
+                              </div>
                     </div>
-                </div>
                 <% } %>
-          
-                        
+                <br>
+                <% if(guests <= 3) { %>
+                    <div id = "triple">
+                        <% let count3 = 0 %>
+                            <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
+                                <% if(availableRooms[i].RoomTypeId === 3) {
+                                    count3++
+                                } %>
+                                <% } %>
+                                <div class="card" style="width: 18rem;">
+                                    <img src="https://www.gardenhotels.co.jp/images/millennium-tokyo/room/corner-triple/mainvisual-01.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                    <h5 class="card-title" style="text-align: center">Triple</h5>
+                                    <p class="card-text">The comfortable 22 m² room comes with complimentary WiFi internet, Connectivity Panel,...</p>
+                                    <h6 class="card-subtitle mb-2 text-muted" style="text-align: right">Available Rooms: <%= count3 %></h6>
+                                    <a href = "/booking/triple" class="card-link">See Full Details & Book</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                <br>
+                <% if(guests <= 4) { %>
+                    <div id = "quad">
+                        <% let count4 = 0 %>
+                        <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
+                            <% if(availableRooms[i].RoomTypeId === 4) {
+                                count4++
+                            } %>
+                            <% } %>
+                            <div class="card" style="width: 18rem;">
+                                    <img src="http://www.hotelwashington.nl/wp-content/uploads/2014/07/28921718.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                    <h5 class="card-title" style="text-align: center">Quad</h5>
+                                    <p class="card-text">The comfortable 22 m² room comes with complimentary WiFi internet, Connectivity Panel,...</p>
+                                    <h6 class="card-subtitle mb-2 text-muted" style="text-align: right">Available Rooms: <%= count4 %></h6>
+                                    <a href = "/booking/quad" class="card-link">See Full Details & Book</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    <br>
+        </div>
     </body>
     </html>
