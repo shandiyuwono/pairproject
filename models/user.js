@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.STRING
   }, {});
 
+  User.prototype.getFullName = function() {
+    return `${this.first_name} ${this.last_name}`
+  }
+
   User.addHook('beforeCreate', (user, options) => {
     let hash = bcrypt.hashSync(user.password,10)
     user.password = hash
