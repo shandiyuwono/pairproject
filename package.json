@@ -1,0 +1,27 @@
+{
+  "name": "pairproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shandiyuwono/pairproject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shandiyuwono/pairproject/issues"
+  },
+  "homepage": "https://github.com/shandiyuwono/pairproject#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "sequelize": "^5.8.6"
+  }
+}
