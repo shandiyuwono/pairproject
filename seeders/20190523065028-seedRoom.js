@@ -1,7 +1,7 @@
 'use strict';
 const fs = require('fs')
 
-const rooms = fs.readFileSync('./room.csv').toString().split('\r\n').map(el=> {return el.split(',')}).slice(1)
+const rooms = fs.readFileSync('./room.csv').toString().split('\n').map(el=> {return el.split(',')}).slice(1)
 
 let seed = []
 for(let i = 0; i<= rooms.length-1; i++) {

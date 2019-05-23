@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/stay.css" type="text/css">
+    <title> H8H | STAY </title>
+</head>
+<body>
+<section>
+    <header>
+    <div class="header">
+        <div class="row-header">
+            <div><h3 class="col-header"> <a href="\" id="nav"> home </a></h3></div>
+            <div><h3 class="col-header"> <a href="stay" id="nav"> stay </a> </h3></div>
+            <div><h3 class="col-header"> <a href='/user/register' id="nav"> register </a></h3></div>
+            <div><h3 class="col-header"> <a href="/user/login" id="nav"> login </a></h3>
+              <div style="text-align: center; padding-top: 100px; font-size: 24px">
+                  <% let date = new Date().toISOString().substr(0,10) %>
+                  <form action = "/booking/available" method = "POST">
+                      <label>CHECK IN</label>
+                      <input type = "date" name = "arrival_time" min = "<%= date %>" value = "<%= date %>">
+                      <label>CHECK OUT</label>
+                      <input type = "date" name = "checkout_time" min = "<%= date %>" value = "<%= date %>">
+                      <label>Guests</label>
+                      <select name = "guests">
+                          <% for(let i = 1; i <= 4; i++) { %>
+                              <option><%= i %></option>
+                          <% } %>
+                      </select>
+                      <button type = "submit">Check Availability</button>
+                  </form>
+              </div>
+            </div>
+        </div>   
+    </div>
+</header>
+<div class="img1">
+       <p class="fresh"> STAY WITH US </p>
+    </div>
+</section>
+
+<section class="content">
+    <div class>
+    <div class="spacer-60">
+        <hr>
+    </div>
+    <div class="about-hotel">
+        <h2> H8H BEDROOMS</h2>
+    </div>
+    <div class="spacer-40"></div>
+    <div class="content-text">
+        <p id="content-text1"> Airy and welcoming, each room is a balance of private space and open design, featuring natural materials interpreted with sophisticated style. A comfortable and considered space that allows you to focus, relax, and be yourself. </p>
+        <img src="/images/wavy-line.png" alt="wavy-line" id="wavy-line">
+    </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row-img">
+            <div class="col-text1">
+                <h2 id="food-title">
+                    A GREAT ROOM FOR A NIGHT AWAY
+                </h2>
+                <p id="food-text">
+                    Treat yourself to our King Bedroom. Equipped with a comfortable king platform bed, you'll come up with any excuse to hit snooze. Enjoy a natural stone tile walk-in shower with separate water closet for extra privacy.
+                </p>
+            </div>
+            <div><img src="https://hotelvt.com/wp-content/uploads/2018/07/Hotel-Vermont-Deluxe-King-Bedroom.jpg" class="col-img"></div>
+            <div><img src="https://hotelvt.com/wp-content/uploads/2018/07/Hotel-Vermont-Queen-Double.jpg" class="col-img"></div>
+            <div class="col-text2">
+                    <h2 id="food-title">
+                        A GREAT ROOM FOR THE WHOLE FAMILY
+                        </h2>
+                        <p id="food-text">
+                            A great room for families, or people who need a little extra elbow room. Comfortable bedroom with 1 Queen and 1 Double Platform Bed with window sofa. Full bath with natural stone tile and a soaking tub.
+                        </p>
+            </div>
+
+
+            <div class="col-text3">
+                    <h2 id="food-title"> A GREAT PLACE TO GATHER, OR TO SPEND THE NIGHT </h2>
+                    <p id="food-text"> The H8H Suite is 480 Square feet bedroom with a sitting area and king size Murphy bed. The living room boasts a 55" inch LED Edge Lit TV with a Bose Sound System and a 40" TV near the bed.
+
+                    </p></div>
+                    <div><img src="https://hotelvt.com/wp-content/uploads/2018/07/Hotel-Vermont-One-Bedroom-Suite.jpg" class="col-img" id="last-image"></div>
+                    
+            
+    </div>
+</section>
+
+<footer class="footer">
+    <h3 id="footer"> 22 CHERRY STREET, JAKARTA, INDONESIA - P: 0877 237 80472 - E: H8HOTEL@MAIL.COM </h3>
+</footer>
+
+</body>
+
+</html>

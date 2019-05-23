@@ -1,37 +1,83 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Fox Hotel: Home</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/style.css" type="text/css">
-    </head>
-    <body>
-        <a href = '/user/register'>Register</a>
-        <a href = '/user/login'>Log In</a>
 
-        <% let date = new Date().toISOString().substr(0,10) %>
-        <form action = "/booking/available" method = "POST">
-            <label>CHECK IN</label>
-            <input type = "date" name = "arrival_time" min = "<%= date %>" value = "<%= date %>">
-            <label>CHECK OUT</label>
-            <input type = "date" name = "checkout_time" min = "<%= date %>" value = "<%= date %>">
-            <label>Guests</label>
-            <select name = "guests">
-                <% for(let i = 1; i <= 4; i++) { %>
-                    <option><%= i %></option>
-                <% } %>
-            </select>
-            <button type = "submit">Check Availability</button>
-        </form>
-        <div class="pt20">
-            <h1 style="text-align: center">Home Page</h1>
-            <div class="row" style="text-align: center; font-size: 30px">
-                <div class="col-6"><a href = '/user/register'>Register</a></div>
-                <div class="col-6"><a href = '/user/login'>Log In</a></div>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <title> H8H | Home</title>
+
+</head>
+
+<body>
+<section>
+    <header>
+    <div class="header">
+        <div class="row-header">
+            <div><h3 class="col-header"> <a href="\" id="nav"> home </a></h3></div>
+            <div><h3 class="col-header"> <a href="stay" id="nav"> stay </a> </h3></div>
+            <div><h3 class="col-header"> <a href='/user/register' id="nav"> register </a></h3></div>
+            
+            <% if (!x) { %>
+                <div><h3 class="col-header"> <a href="/user/login" id="nav"> login </a></h3></div>
+            <% } %>
+
+            <% if (x) { %>
+                <div><h3 class="col-header"> <a href="/user/logout" id="nav"> logout </a></h3></div>
+            <% } %>
+            
+        </div>   
+    </div>
+</header>
+    
+<div class="img1">
+       <p class="rustic"> RUSTIC & MODERN </p>
+    </div>
+</section>
+
+
+<section class="content">
+    <div class>
+    <div class="spacer-60">
+        <hr>
+    </div>
+    <div class="about-hotel">
+        <h2> H8H </h2>
+    </div>
+    <div class="spacer-40"></div>
+    <div class="content-text">
+        <p id="content-text1"> Hacktiv8 Hotel located in downtown Jakarta near the Pondok Indah Mall, we give you space to be yourself and room to gather. We're here to help you explore like a local, relax like it's your job, and soak in every detail. </p>
+        <img src="/images/wavy-line.png" alt="wavy-line" id="wavy-line">
+    </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row-img">
+            <div>
+                <p class="img-cap"><a href="stay.html" id="img-cap"> STAY </a></p>
+                <img src="https://hotelvt.com/wp-content/uploads/2018/07/Hotel-Vermont-King-Bedroom.jpg" class="col-img"></div>
+            <div>
+                <p class="img-cap"><a href="food.html" id="img-cap"> EAT & DRINK </a></p>
+                <img src="https://hotelvt.com/wp-content/uploads/2018/07/Hotel-Vermont-Juniper-Dinner-table.jpg" class="col-img"></div>
+            <div>
+                <a href="gather.html"> 
+                <img src="https://hotelvt.com/wp-content/uploads/2018/12/Gather-at-Hotel-Vermont-Winter.jpg" class="col-img" id="cobaa">
+                </a>
+                </div>
+            <div>
+                <a href="gather.html">
+                    <img src="https://hotelvt.com/wp-content/uploads/2018/05/Wedding-content-image-.jpg" class="col-img">
+                </a>
+
             </div>
         </div>
-    </body>
-</html> 
+    </div>
+</section>
+
+<footer class="footer">
+    <h3 id="footer"> 22 CHERRY STREET, JAKARTA, INDONESIA - P: 0877 237 80472 - E: H8HOTEL@xMAIL.COM </h3>
+</footer>
+
+</body>
+
+</html>

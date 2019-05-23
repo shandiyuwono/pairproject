@@ -18,6 +18,12 @@ class BookingController {
         })
             .then(rooms => {
                 // res.send(rooms)
+                if(at - new Date() < 0) {
+                    throw `Date input must be today or after ${new Date().toISOString().slice(0, 10)}`
+                }
+                if(ct < at) {
+                    throw `Check-out date should be after check-in date`
+                }
                 let availables = rooms
                     .filter(room => {
                         let available = true 
@@ -41,12 +47,16 @@ class BookingController {
             })
             .then(roomtypes => {
                 // res.send(req.body)
+
                  res.render('available.ejs', {
                     availableRooms: availableRooms,
                     roomTypes: roomtypes,
                     guests: req.body.guests
                 })
                 // res.send(availableRooms)
+            })
+            .catch(err => {
+                res.send(err)
             })
     }
 
