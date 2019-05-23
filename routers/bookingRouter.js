@@ -9,5 +9,7 @@ router.post('/available', BookingController.checkAvailable)
 
 router.get('/single', BookingController.single)
 
+router.get('/single/reserve', BookingController.singleReserve)
+
 
 module.exports = router
