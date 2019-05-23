@@ -6,7 +6,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="">
     </head>
     <style>
     h1 {
@@ -32,7 +32,7 @@
     </style>
     <body>
 
-        <h1>Single</h1>
+        <h1>Triple</h1>
 
         <div id = "description">
             <h2>Book Your Breakfast</h2>
@@ -41,7 +41,7 @@
     
         <div id = "breakfast">
                 <h3>+100,000 IDR per Guest/Stay</h3>
-                <form action = "/booking/single/reserve" method = "POST">
+                <form action = "/booking/triple/reserve" method = "POST">
                     <select name = "amount" onchange = "this.form.submit()" >
                         <% for(let i = 0; i <= reqsession.guests; i++) { %>
                             <option value = "<%= i %>"><%= i %></option>
@@ -51,28 +51,27 @@
         </div>
 
         <div id = "summary">
-                <% let total = roomData.price %>
-                <% let nights = dayCalculation(reqsession.arrival_time, reqsession.checkout_time) %>
-                <h2>Your Stay</h2>
-                <p>For <%= reqsession.guests %> Guest(s)</p>
-                <p><%= nights %> night(s)</p>
-                <p>Single Bedroom</p>
-                <% if(amount) { %>
-                    <div id = "amount">
-                        <h3>Breakfast</h3>
-                        <p><%= amount %> x 100,000 IDR</p>
-                        <a href = "/booking/single/breakfast/delete">delete</a>
-                        <% total += amount * 100000 %>
-                    </div>
-                <% } %>
-                <h3>Total</h3>
-                <p><%= priceCalculation(total, nights) %> IDR</p>
+            <% let total = roomData.price %>
+            <% let nights = dayCalculation(reqsession.arrival_time, reqsession.checkout_time) %>
+            <h2>Your Stay</h2>
+            <p>For <%= reqsession.guests %> Guest(s)</p>
+            <p><%= nights %> night(s)</p>
+            <p>Single Bedroom</p>
+            <% if(amount) { %>
+                <div id = "amount">
+                    <h3>Breakfast</h3>
+                    <p><%= amount %> x 100,000 IDR</p>
+                    <a href = "/booking/single/breakfast/delete">delete</a>
+                    <% total += amount * 100000 %>
+                </div>
+            <% } %>
+            <h3>Total</h3>
+            <p><%= priceCalculation(total, nights) %> IDR</p>
 
 
-                <form action = '/booking/<%= roomData.id %>/payment' method = "POST">
-                    <button type = 'submit'>Book Now</button>
-                </form>
+            <form action = '/booking/<%= roomData.id %>/payment' method = "POST">
+                <button type = 'submit'>Book Now</button>
+            </form>
         </div>
     </body>
 </html>
-

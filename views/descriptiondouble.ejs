@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+    h1 {
+        text-align: center; 
+    }
+    
+
+    #description {
+        width: 1000px;
+        margin: auto; 
+        text-align: center; 
+    }
+    </style>
+    <body>
+
+        <h1>Double</h1>
+
+        <div id = "description">
+            <p>Price: <%= room.price %></p>
+            <p>Size: <%= `${room.size} m²` %></p>
+            <h2>AMENITIES</h2>
+            <p>The comfortable <%= room.size %> m² room comes with complimentary WiFi internet, Connectivity Panel, Espresso machine and 40" LCD TV. Enjoy your morning cup of coffee or Dilmah Tea with a view of Jakarta's skyline.</p>
+
+            <a href = "/booking/double/reserve">Book Now</a>
+        </div>
+      
+    </body>
+</html>

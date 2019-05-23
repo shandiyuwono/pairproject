@@ -5,6 +5,10 @@ const port = 3000
 
 const userRouter = require('./routers/userRouter')
 const bookingRouter = require('./routers/bookingRouter')
+const adminRouter = require('./routers/adminRouter')
+
+
+const {Room, Booking, RoomType} = require('./models/index')
 
 app.use(session({
     secret: 'keyboard cat',
@@ -21,12 +25,13 @@ app.set('view-engine', 'ejs')
 
 app.use((req,res,next) => {
     res.locals.error = null
+    res.locals.booking = false
     next()
 })
 
 app.use('/user', userRouter)
 app.use('/booking', bookingRouter)
-
+app.use('/admin', adminRouter)
 app.get('/', function(req,res) {
     let x = req.session
     res.render('home.ejs', {x})
@@ -37,6 +42,3 @@ app.get('/stay', function(req,res) {
     res.render('stay.ejs', {x})
 })
 
-app.get('/payment', (req,res) => {
-    res.render('payment.ejs')
-})

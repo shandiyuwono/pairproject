@@ -18,11 +18,15 @@
         <div class="pt200">
             <h1 style="text-align: center">Log In</h1>
             <br><br>
-            
+            <% let path = "/user/login" %>
+            <% if(booking){ %>
+                <% path = `/booking/${id}/payment/login` %>
+                <h2>Please login before continuing your payment.</h2>
+            <% } %> 
             <% if (error) { %>  
                 <h2><%= error %></h2>
             <% } %>
-            <form action = "/user/login" method = "POST">
+            <form action = "<%= path %>" method = "POST">
                 <div class="container" style="width: 400px">
                     <div class="form-group">
                         <label for="username">Username:</label>

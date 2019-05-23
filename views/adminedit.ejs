@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+        table {
+            text-align: center; 
+        }
+        label {
+            display: block; 
+        }
+    </style>
+    <body>
+        
+        <form action = "/admin/edit/<%= room.id %>" method = "POST">
+            <label>Room Number: <%= room.room_number %></label>
+            <label>Room Capacity: <%= room.RoomType.capacity %></label>
+            <label>Room Size: </label>
+            <input name = "size" type = "number" min = "10" value = "<%= room.RoomType.size %>">
+            <label>Room Price: </label>
+            <input name = "price" type = "number" min = "100000" value = "<%= room.RoomType.price %>">
+            <label></label>
+            <button type = "submit">Edit Room</button>
+        </form>
+    </body>
+</html>

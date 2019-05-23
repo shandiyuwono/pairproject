@@ -1,8 +1,40 @@
-const {Booking, Room, RoomType} = require('../models/index') 
-
+const {Booking, Room, RoomType, User} = require('../models/index') 
+const dayCalculation = require('../helpers/daycalculation')
+const priceCalculation = require('../helpers/pricecalculation')
+const bcrypt = require('bcrypt');
 
 class BookingController {
-    
+    static login(req,res) {
+        User.findOne({
+            where: {
+                username: req.body.username
+            }
+        })
+         .then(user => {
+             let valid = bcrypt.compareSync(req.body.password, user.password)
+             if(valid){
+                 req.session.user = {
+                     id: user.id,
+                     username: user.username,
+                 }
+                 
+                 res.render('payment.ejs', {
+                    RoomTypeId : req.params.id
+                })
+             }
+             else{
+                 res.render('login.ejs', {
+                     booking: true,
+                     error: 'password wrong'
+                 })
+             }
+         })
+         .catch(err => {
+             res.send(err)
+         })
+    }
+
+
     static checkAvailable(req,res){
         let at = new Date(req.body.arrival_time)
         let ct = new Date(req.body.checkout_time)
@@ -17,9 +49,6 @@ class BookingController {
         })
             .then(rooms => {
                 // res.send(rooms)
-                if(at - new Date() < 0) {
-                    throw `Date input must be today or after ${new Date().toISOString().slice(0, 10)}`
-                }
                 if(ct < at) {
                     throw `Check-out date should be after check-in date`
                 }
@@ -27,8 +56,8 @@ class BookingController {
                     .filter(room => {
                         let available = true 
                         if (room.Bookings.find(booking => {
-                            if (at > new Date(booking.arrival_time) && at < new Date(booking.checkout_time)) return true
-                            if (ct > new Date(booking.arrival_time) && ct < new Date(booking.checkout_time)) return true
+                            if (at >= new Date(booking.arrival_time) && at <= new Date(booking.checkout_time)) return true
+                            if (ct >= new Date(booking.arrival_time) && ct <= new Date(booking.checkout_time)) return true
                             if (at < new Date(booking.arrival_time) && ct > new Date(booking.checkout_time)) return true
                         }
                         )) {
@@ -59,6 +88,40 @@ class BookingController {
             })
     }
 
+    static bookingSuccess(req,res) {
+        let at = new Date(req.session.arrival_time).toISOString().substr(0,10)
+        let ct = new Date(req.session.checkout_time).toISOString().substr(0,10)
+        Room.findAll({
+            where: {
+                RoomTypeId: req.params.id
+            }
+        }) 
+            .then(rooms =>{
+                
+                let roomIds = rooms.map(function(room) {
+                    return room.id
+                })
+
+                return Promise.all(roomIds)
+            })
+            .then(roomIds => {
+                var random = roomIds[Math.floor(Math.random()*roomIds.length)]
+                Booking.create({
+                    arrival_time: at,
+                    checkout_time: ct,
+                    RoomId: random,
+                    UserId: req.session.user.id
+                }) 
+                    .then(() => {
+                        res.render('success.ejs')
+                    })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+    }
+    //single
     static single(req,res){
         RoomType.findByPk(1)
             .then(room => {
@@ -66,6 +129,10 @@ class BookingController {
                     room: room
                 })
             })
+            .catch(err => {
+                res.send(err)
+            })
+
     }
 
     static singleReserve(req,res) {
@@ -74,22 +141,32 @@ class BookingController {
                 res.render('booksingle.ejs', {
                     reqsession : req.session,
                     roomData: room,
-                    amount: null
+                    amount: null,
+                    dayCalculation: dayCalculation,
+                    priceCalculation: priceCalculation
                 })
             })
+            .catch(err => {
+                res.send(err)
+            })
+
     }
 
     static singleBreakfast(req,res) {
-
-        // console.log(req.body.amount)
          RoomType.findByPk(1)
             .then(room => {
                 res.render('booksingle.ejs', {
                     reqsession: req.session,
                     roomData: room,
-                    amount: req.body.amount
+                    amount: req.body.amount,
+                    dayCalculation: dayCalculation,
+                    priceCalculation: priceCalculation
                 })
             })
+            .catch(err => {
+                res.send(err)
+            })
+
         
     }
 
@@ -99,10 +176,212 @@ class BookingController {
             res.render('booksingle.ejs', {
                 reqsession: req.session,
                 roomData: room,
-                amount: null
+                amount: null,
+                dayCalculation: dayCalculation,
+                priceCalculation: priceCalculation
             })
         })
+        .catch(err => {
+            res.send(err)
+        })
+
     }
+    
+    //double
+    static double(req,res) {
+        RoomType.findByPk(2)
+        .then(room => {
+            res.render('descriptiondouble.ejs', {
+                room: room
+            })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+    }
+
+    static doubleReserve(req,res) {
+        RoomType.findByPk(2)
+            .then(room => {
+                res.render('bookdouble.ejs', {
+                    reqsession : req.session,
+                    roomData: room,
+                    amount: null,
+                    dayCalculation: dayCalculation,
+                    priceCalculation: priceCalculation
+                })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+    }
+
+    static doubleBreakfast(req,res) {
+        RoomType.findByPk(2)
+           .then(room => {
+               res.render('bookdouble.ejs', {
+                   reqsession: req.session,
+                   roomData: room,
+                   amount: req.body.amount,
+                   dayCalculation: dayCalculation,
+                    priceCalculation: priceCalculation
+               })
+           })
+           .catch(err => {
+            res.send(err)
+        })
+
+   }
+
+   static doubleBreakfastDelete(req,res) {
+    RoomType.findByPk(2)
+        .then(room => {
+            res.render('bookdouble.ejs', {
+                reqsession: req.session,
+                roomData: room,
+                amount: null,
+                dayCalculation: dayCalculation,
+                priceCalculation: priceCalculation
+            })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+    }   
+
+    //triple
+    static triple(req,res) {
+            RoomType.findByPk(3)
+            .then(room => {
+                res.render('descriptiontriple.ejs', {
+                    room: room
+                })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+        }
+
+    static tripleReserve(req,res) {
+        RoomType.findByPk(3)
+            .then(room => {
+                res.render('booktriple.ejs', {
+                    reqsession : req.session,
+                    roomData: room,
+                    amount: null,
+                    dayCalculation: dayCalculation,
+                    priceCalculation: priceCalculation
+                })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+    }
+
+    static tripleBreakfast(req,res) {
+        RoomType.findByPk(3)
+        .then(room => {
+            res.render('booktriple.ejs', {
+                reqsession: req.session,
+                roomData: room,
+                amount: req.body.amount,
+                dayCalculation: dayCalculation,
+                priceCalculation: priceCalculation
+            })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+}
+
+    static tripleBreakfastDelete(req,res) {
+        RoomType.findByPk(3)
+            .then(room => {
+                res.render('booktriple.ejs', {
+                    reqsession: req.session,
+                    roomData: room,
+                    amount: null,
+                    dayCalculation: dayCalculation,
+                    priceCalculation: priceCalculation
+                })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+        }   
+
+    //quad
+
+    static quad(req,res) {
+        RoomType.findByPk(4)
+        .then(room => {
+            res.render('descriptionquad.ejs', {
+                room: room
+            })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+    }
+
+    static quadReserve(req,res) {
+        RoomType.findByPk(4)
+            .then(room => {
+                res.render('bookquad.ejs', {
+                    reqsession : req.session,
+                    roomData: room,
+                    amount: null,
+                    dayCalculation: dayCalculation,
+                    priceCalculation: priceCalculation
+                })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+    }
+
+    static quadBreakfast(req,res) {
+        RoomType.findByPk(4)
+        .then(room => {
+            res.render('bookquad.ejs', {
+                reqsession: req.session,
+                roomData: room,
+                amount: req.body.amount,
+                dayCalculation: dayCalculation,
+                priceCalculation: priceCalculation
+            })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+    }
+
+    static quadBreakfastDelete(req,res) {
+        RoomType.findByPk(4)
+            .then(room => {
+                res.render('bookquad.ejs', {
+                    reqsession: req.session,
+                    roomData: room,
+                    amount: null,
+                    dayCalculation: dayCalculation,
+                    priceCalculation: priceCalculation
+                })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+        }   
 }
 
 module.exports = BookingController
