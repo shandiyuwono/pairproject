@@ -2,6 +2,7 @@ const {Booking, Room, RoomType, User} = require('../models/index')
 const dayCalculation = require('../helpers/daycalculation')
 const priceCalculation = require('../helpers/pricecalculation')
 const bcrypt = require('bcrypt');
+const nodemailer = require("nodemailer");
 
 class BookingController {
     static login(req,res) {

@@ -14,13 +14,20 @@
         }
         label {
             display: block; 
+            padding: 10px; 
+        }
+
+        form{
+            width: 1000px;
+            margin: auto; 
+            text-align: center; 
         }
     </style>
     <body>
         
         <form action = "/admin/edit/<%= room.id %>" method = "POST">
-            <label>Room Number: <%= room.room_number %></label>
-            <label>Room Capacity: <%= room.RoomType.capacity %></label>
+            <label><h1>Room Number: <%= room.room_number %></h1></label>
+            <label><h2>Room Capacity: <%= room.RoomType.capacity %></h2></label>
             <label>Room Size: </label>
             <input name = "size" type = "number" min = "10" value = "<%= room.RoomType.size %>">
             <label>Room Price: </label>
