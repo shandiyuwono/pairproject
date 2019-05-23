@@ -27,7 +27,7 @@ class UserController {
                 }
                 console.log(req.session);
                 
-                res.redirect('/stay')
+                res.redirect('/')
             }
             else{
                 res.render('login.ejs', {
