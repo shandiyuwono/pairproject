@@ -13,19 +13,23 @@
     <div class="header">
         <div class="row-header">
             
-            <% if (!x.user) { %>
-                <div><h3 class="col-header"> <a href='/user/register' id="nav"> register </a></h3></div>
-                <div><h3 class="col-header"> <a href="\" id="nav"> home </a></h3></div>
-                <div><h3 class="col-header"> <a href="stay" id="nav"> stay </a> </h3></div>
-                <div><h3 class="col-header"> <a href="/user/login" id="nav"> login </a></h3></div>
-            <% } %>
-
-            <% if (x.user) { %>
-                <div><h3 class="col-header"> <%=`welcome, ${x.user.username}`%> </h3></div>
-                <div><h3 class="col-header"> <a href="\" id="nav"> home </a></h3></div>
-                <div><h3 class="col-header"> <a href="stay" id="nav"> stay </a> </h3></div>
-                <div><h3 class="col-header"> <a href="/user/logout" id="nav"> logout </a></h3></div>
-            <% } %>
+                <% if (!x.user) { %>
+                    <div><h3 class="col-header"> <a href='/user/register' id="nav"> register </a></h3></div>
+                    <div><h3 class="col-header"> <a href="\" id="nav"> home </a></h3></div>
+                    <div><h3 class="col-header"> <a href="stay" id="nav"> stay </a> </h3></div>
+                    <div><h3 class="col-header"> <a href="/user/login" id="nav"> login </a></h3></div>
+                <% } %>
+    
+                <% if (x.user) { %>
+                        <% if (x.user.username === 'admin'){ %>
+                            <div><h3 class="col-header"> <a href="/admin" id="nav"> booking list </a></h3></div>
+                        <% } else { %>
+                            <div><h3 class="col-header"> <%=`welcome, ${x.user.username}`%> </h3></div>
+                        <% } %>
+                        <div><h3 class="col-header"> <a href="\" id="nav"> home </a></h3></div>
+                        <div><h3 class="col-header"> <a href="stay" id="nav"> stay </a> </h3></div>
+                        <div><h3 class="col-header"> <a href="/user/logout" id="nav"> logout </a></h3></div>
+                <% } %>
 
         </div>   
     </div>
