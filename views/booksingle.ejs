@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+    h1 {
+        text-align: center; 
+    }
+    
+
+    #description {
+        width: 1000px;
+        margin: auto; 
+        text-align: center; 
+    }
+
+    #breakfast{
+        width: 500px;
+        margin: auto; 
+    }
+
+    #summary {
+        width: 500px;
+        margin: auto; 
+    }
+    </style>
+    <body>
+
+        <h1>Single</h1>
+
+        <div id = "description">
+            <h2>Book Your Breakfast</h2>
+            <p>Save time by booking your breakfast now. Whatever your plans for the day, whatever time zone you're in and whatever it is you like to eat, at Fox Hotel you will always find a breakfast that suits you.</p>
+        </div>
+    
+        <div id = "breakfast">
+                <h3>+100,000 IDR per Guest/Stay</h3>
+                <select>
+                    <% for(let i = 0; i <= reqsession.guests; i++) { %>
+                        <option><%= i %></option>
+                    <% } %>
+                </select>
+        </div>
+
+        <div id = "summary">
+            <h2>Your Stay</h2>
+            <p>For <%= reqsession.adults %> adults and <%= reqsession.children %> children</p>
+            <p>Single Bedroom</p>
+        </div>
+    </body>
+</html>

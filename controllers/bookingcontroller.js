@@ -6,8 +6,12 @@ class BookingController {
     static checkAvailable(req,res){
         let at = new Date(req.body.arrival_time)
         let ct = new Date(req.body.checkout_time)
-        req.session.at = at
-        req.session.ct = ct
+        req.session.arrival_time = at
+        req.session.checkout_time = ct
+        req.session.adults =  Number(req.body.adults) 
+        req.session.children = Number(req.body.children)
+        req.session.guests = Number(req.body.adults) + Number(req.body.children)
+        console.log(req.session)
         let availableRooms;
         Room.findAll({
             include: Booking,
@@ -52,6 +56,12 @@ class BookingController {
                     room: room
                 })
             })
+    }
+
+    static singleReserve(req,res) {
+        res.render('booksingle.ejs', {
+            reqsession : req.session
+        })
     }
 }
 
