@@ -8,9 +8,7 @@ class BookingController {
         let ct = new Date(req.body.checkout_time)
         req.session.arrival_time = at
         req.session.checkout_time = ct
-        req.session.adults =  Number(req.body.adults) 
-        req.session.children = Number(req.body.children)
-        req.session.guests = Number(req.body.adults) + Number(req.body.children)
+        req.session.guests = Number(req.body.guests) 
         console.log(req.session)
         let availableRooms;
         Room.findAll({
