@@ -41,17 +41,36 @@
     
         <div id = "breakfast">
                 <h3>+100,000 IDR per Guest/Stay</h3>
-                <select>
-                    <% for(let i = 0; i <= reqsession.guests; i++) { %>
-                        <option><%= i %></option>
-                    <% } %>
-                </select>
+                <form action = "/booking/single/reserve" method = "POST">
+                    <select name = "amount" onchange = "this.form.submit()" >
+                        <% for(let i = 0; i <= reqsession.guests; i++) { %>
+                            <option value = "<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </form>
         </div>
 
         <div id = "summary">
+            <% let total = roomData.price %>
             <h2>Your Stay</h2>
-            <p>For <%= reqsession.adults %> adults and <%= reqsession.children %> children</p>
+            <p>For <%= reqsession.guests %> Guest(s)</p>
             <p>Single Bedroom</p>
+            <% if(amount) { %>
+                <div id = "amount">
+                    <h3>Breakfast</h3>
+                    <p><%= amount %> x 100,000 IDR</p>
+                    <a href = "/booking/single/breakfast/delete">delete</a>
+                    <% total += amount * 100000 %>
+                </div>
+            <% } %>
+            <h3>Total</h3>
+            <p><%= total %> IDR</p>
+         
+            <% if(reqsession.user === undefined) { %>
+                <a href = "/booking/login">Book</a>
+            <% } else { %>
+                <p><a href = "/booking/single/reserve/<%= reqsession.user.id %>">Book</a></p>
+            <% } %>
         </div>
     </body>
 </html>

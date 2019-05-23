@@ -8,10 +8,8 @@ class BookingController {
         let ct = new Date(req.body.checkout_time)
         req.session.arrival_time = at
         req.session.checkout_time = ct
-        req.session.adults =  Number(req.body.adults) 
-        req.session.children = Number(req.body.children)
-        req.session.guests = Number(req.body.adults) + Number(req.body.children)
-        console.log(req.session)
+        req.session.guests = Number(req.body.guests) 
+ 
         let availableRooms;
         Room.findAll({
             include: Booking,
@@ -41,9 +39,11 @@ class BookingController {
                 return Promise.all(roomtypes)
             })
             .then(roomtypes => {
+                // res.send(req.body)
                  res.render('available.ejs', {
                     availableRooms: availableRooms,
-                    roomTypes: roomtypes
+                    roomTypes: roomtypes,
+                    guests: req.body.guests
                 })
                 // res.send(availableRooms)
             })
@@ -59,8 +59,38 @@ class BookingController {
     }
 
     static singleReserve(req,res) {
-        res.render('booksingle.ejs', {
-            reqsession : req.session
+        RoomType.findByPk(1)
+            .then(room => {
+                res.render('booksingle.ejs', {
+                    reqsession : req.session,
+                    roomData: room,
+                    amount: null
+                })
+            })
+    }
+
+    static singleBreakfast(req,res) {
+
+        // console.log(req.body.amount)
+         RoomType.findByPk(1)
+            .then(room => {
+                res.render('booksingle.ejs', {
+                    reqsession: req.session,
+                    roomData: room,
+                    amount: req.body.amount
+                })
+            })
+        
+    }
+
+    static singleBreakfastDelete(req,res) {
+        RoomType.findByPk(1)
+        .then(room => {
+            res.render('booksingle.ejs', {
+                reqsession: req.session,
+                roomData: room,
+                amount: null
+            })
         })
     }
 }
