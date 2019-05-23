@@ -5,7 +5,8 @@
         <title>Fox Hotel: Home</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css" type="text/css">
     </head>
     <style>
         label {
@@ -13,8 +14,44 @@
         }
     </style>
     <body>
-        <h1>Regster User</h1>
+        <div class="pt40">
+            <h1 style="text-align: center">Register User</h1>
+            <br><br>
+            <form action = "/user/register" method = "POST">
+                <div class="container form-padding" style="width: 500px">
+                    <div class="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" name="first_name" class="form-control" id="" aria-describedby="" placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" name="last_name" class="form-control" id="" aria-describedby="" placeholder="Enter last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="number" name="phone" class="form-control" id="" aria-describedby="" placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="username" name="username" class="form-control" id="" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Password:</label>
+                        <input type="password" name="password" class="form-control" id="" placeholder="Enter password">
+                    </div>
+                    <br>
+                    <div style="text-align: center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
+        <!-- <h1>Regster User</h1>
         <form action = "/user/register" method = "POST">
             <label >First Name</label>
             <input type="text" name = "first_name">
@@ -29,6 +66,6 @@
             <label>Password</label>
             <input type="text" name ="password">
             <button type = "submit">Register</button>
-        </form>
+        </form> -->
     </body>
 </html>
