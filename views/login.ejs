@@ -12,6 +12,11 @@
         label {
             display: block; 
         }
+
+        #error {
+            text-align: center;
+            color: red; 
+        }
     </style>
     <body>
         
@@ -24,7 +29,7 @@
                 <h2>Please login before continuing your payment.</h2>
             <% } %> 
             <% if (error) { %>  
-                <h2><%= error %></h2>
+                <h2 id = "error"><%= error %></h2>
             <% } %>
             <form action = "<%= path %>" method = "POST">
                 <div class="container" style="width: 400px">
