@@ -9,7 +9,6 @@ for(let i = 0; i<= rooms.length-1; i++) {
     let obj = {
         room_number: rooms[i][0],
         RoomTypeId: rooms[i][1],
-        room_status: rooms[i][2],
         createdAt: new Date(),
         updatedAt: new Date()
     }

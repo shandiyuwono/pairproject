@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Booking = sequelize.define('Booking', {
-    arrival_time: DataTypes.DATE,
-    checkout_time: DataTypes.DATE,
+    arrival_time: DataTypes.DATEONLY,
+    checkout_time: DataTypes.DATEONLY,
     UserId: DataTypes.INTEGER,
     RoomId: DataTypes.INTEGER
   }, {});

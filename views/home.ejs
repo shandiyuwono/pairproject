@@ -11,5 +11,25 @@
         <h1>Home Page</h1>
         <a href = '/user/register'>Register</a>
         <a href = '/user/login'>Log In</a>
+
+        <form action = "/booking/available" method = "POST">
+            <label>CHECK IN</label>
+            <input type = "date" name = "arrival_time">
+            <label>CHECK OUT</label>
+            <input type = "date" name = "checkout_time">
+            <label>Adults</label>
+            <select name = "adults">
+                <% for(let i = 1; i <= 4; i++) { %>
+                    <option><%= i %></option>
+                <% } %>
+            </select>
+            <label>Children</label>
+            <select name = "children">
+                <% for(let i = 1; i <= 4; i++) { %>
+                    <option><%= i %></option>
+                <% } %>
+            </select>
+            <button type = "submit">Check Availability</button>
+        </form>
     </body>
 </html>
