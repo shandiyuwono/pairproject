@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+        table {
+            text-align: center; 
+        }
+    </style>
+    <body>
+        
+        <table>
+            <thead> 
+                <th>Room Number</th>
+                <th>Room Type</th>
+                <th>Room Capacity</th>
+                <th>Room Size</th>
+                <th>Room Price</th>
+                <th>Booking Status</th>
+                <th>Actions</th>
+            </thead>
+            
+            <% for(let i = 0; i <= roomsData.length-1; i++) { %>
+            <tbody>
+                    <td><%= roomsData[i].room_number %></td>
+                    <td><%= roomsData[i].RoomType.type %></td>
+                    <td><%= roomsData[i].RoomType.capacity %></td>
+                    <td><%= roomsData[i].RoomType.size %></td>
+                    <td><%= roomsData[i].RoomType.price %></td>
+                    <% let booking = 'Free' 
+                    if (roomsData[i].Bookings.length > 0)  {
+                        booking = 'Booked'
+                    } %>
+                    <td><%= booking %></td>
+                    <td><a href = "/admin/edit/<%= roomsData[i].id %>">Edit</a>
+                        <% if(booking === 'Free') { %>
+                            <a href = "/admin/delete/<%= roomsData[i].id %>">Delete</a>
+                        <% } %>
+                    </td>
+            </tbody>
+            <% } %>
+
+        </table>
+    </body>
+</html>

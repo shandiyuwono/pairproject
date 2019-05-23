@@ -19,16 +19,20 @@ router.post('/:id/payment', (req,res,next) => {
         next()
     }
     else{
-        res.redirect('/user/login')
+        // res.redirect('/user/login')
+        res.render('login.ejs', {
+            booking: true,
+            id : req.params.id
+        })
     }
 }, (req,res) => {
     res.render('payment.ejs', {
         RoomTypeId : req.params.id
     })
-})
-// router.get('/booking/single/reserve/:id', function(req,res) {
-//     console.log(req.params)
-// })
+})  
+
+router.post('/:id/payment/login', BookingController.login)  
+
 
 //double
 router.get('/double', BookingController.double)
