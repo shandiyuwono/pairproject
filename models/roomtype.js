@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER
   }, {});
   RoomType.associate = function(models) {
-    RoomType.belongsTo(models.Room)
+    RoomType.hasMany(models.Room)
   };
   return RoomType;
 };

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+    #room {
+        border: 2px solid black; 
+    }
+    
+    h1 {
+        text-align: center; 
+    }
+    #rooms {
+        width: 1000px;
+        margin: auto; 
+        text-align: center; 
+    }
+    
+    
+    </style>
+    <body>
+
+        <h1>Available Rooms</h1>
+
+        <div id = "rooms">
+                <div id = "single">
+
+                        <% let count = 0 %>
+                        <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
+                        <% if(availableRooms[i].RoomTypeId === 1) {
+                            count++
+                        } %>
+                        <% } %>
+                        <h2>Room Type: Single</h2>
+                        <p>Available Rooms: <%= count %> </p>
+                        <a href = "/booking/single">See Details & Book</a>
+                </div>
+                
+                
+                <div id = "Double">
+                        <% let count2 = 0 %>
+                        <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
+                        <% if(availableRooms[i].RoomTypeId === 2) {
+                            count2++
+                        } %>
+                        <% } %>
+                        <h2>Room Type: Double</h2>
+                        <p>Available Rooms: <%= count2 %> </p>
+                        <a href = "/booking/double">See Details & Book</a>
+                </div>
+        
+                
+                <div id = "triple">
+                        <% let count3 = 0 %>
+                        <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
+                        <% if(availableRooms[i].RoomTypeId === 3) {
+                            count3++
+                        } %>
+                        <% } %>
+                        <h2>Room Type: Triple</h2>
+                        <p>Available Rooms: <%= count3 %> </p>
+                        <a href = "/booking/triple">See Details & Book</a>
+                </div>
+           
+           
+                <div id = "quad">
+        
+                        <% let count4 = 0 %>
+                        <% for(let i = 0; i <= availableRooms.length-1; i++) { %>
+                        <% if(availableRooms[i].RoomTypeId === 4) {
+                            count4++
+                        } %>
+                        <% } %>
+                        <h2>Room Type: Quad</h2>
+                        <p>Available Rooms:<%= count4 %> </p>
+                        <a href = "booking/quad">See Details & Book</a>
+                </div>
+        </div>
+        
+      
+    </body>
+</html>

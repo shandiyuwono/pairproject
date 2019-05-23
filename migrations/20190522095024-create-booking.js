@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       arrival_time: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       checkout_time: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       UserId: {
         type: Sequelize.INTEGER,
