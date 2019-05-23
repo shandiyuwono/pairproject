@@ -7,6 +7,7 @@ const Op = Sequelize.Op
 router.post('/available', BookingController.checkAvailable)
 
 
+
 router.get('/single', BookingController.single)
 
 router.get('/single/reserve', BookingController.singleReserve)
