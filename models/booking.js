@@ -1,15 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Booking = sequelize.define('Booking', {
-    arrival_time: {
-      type: DataTypes.DATEONLY,
-      validate: {
-        isAfter: {
-          args: "2019-05-24",
-          msg: "Date input must be today or before 2019-05-24"
-        }
-      }
-    },
+    arrival_time:  DataTypes.DATEONLY,
     checkout_time: DataTypes.DATEONLY,
     UserId: DataTypes.INTEGER,
     RoomId: DataTypes.INTEGER

@@ -35,7 +35,3 @@ app.get('/', function(req,res) {
 app.get('/stay', function(req,res) {
     res.render('stay.ejs')
 })
-
-app.get('/payment', (req,res) => {
-    res.render('payment.ejs')
-})
