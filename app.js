@@ -28,5 +28,14 @@ app.use('/user', userRouter)
 app.use('/booking', bookingRouter)
 
 app.get('/', function(req,res) {
-    res.render('home.ejs')
+    let x = req.session
+    res.render('home.ejs', {x})
+})
+
+app.get('/stay', function(req,res) {
+    res.render('stay.ejs')
+})
+
+app.get('/payment', (req,res) => {
+    res.render('payment.ejs')
 })
