@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     UserId: DataTypes.INTEGER,
     RoomId: DataTypes.INTEGER
   }, {});
+
+  Booking.formatDate = function(date) {
+    return new Date(date).toISOString().substr(0,10)
+  }
   Booking.associate = function(models) {
     Booking.belongsTo(models.User)
     Booking.belongsTo(models.Room)

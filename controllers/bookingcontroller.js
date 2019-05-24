@@ -93,8 +93,8 @@ class BookingController {
     }
 
     static bookingSuccess(req,res) {
-        let at = new Date(req.session.arrival_time).toISOString().substr(0,10)
-        let ct = new Date(req.session.checkout_time).toISOString().substr(0,10)
+        let at = Booking.formatDate(req.session.arrival_time)
+        let ct = Booking.formatDate(req.session.checkout_time)
         Room.findAll({
             where: {
                 RoomTypeId: req.params.id
