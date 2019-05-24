@@ -24,7 +24,7 @@
         }
     </style>
     <body>
-        
+            <%- include('./partials/navbar.ejs') %>
         <form action = "/admin/edit/<%= room.id %>" method = "POST">
             <label><h1>Room Number: <%= room.room_number %></h1></label>
             <label><h2>Room Capacity: <%= room.RoomType.capacity %></h2></label>
